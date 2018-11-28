@@ -8,8 +8,8 @@ from schemas.song import SongSchema
 ERROR_BLANK = " '{}' field cannot be blank"
 ERROR_NAME_ALREADY_EXISTS = "An song with name '{}' already exist"
 ERROR_INSERTING = "An error occurred inserting the song"
-ERROR_ITEM_NOT_FOUND = "Song not found"
-MESSAGE_ITEM_DELETED = "Song deleted"
+ERROR_SONG_NOT_FOUND = "Song not found"
+MESSAGE_SONG_DELETED = "Song deleted"
 
 song_schema = SongSchema()
 song_list_schema = SongSchema(many=True)
@@ -21,7 +21,7 @@ class Song(Resource):
         song = SongModel.find_by_name(name)
         if song:
             return song_schema.dump(song)
-        return {"error": ERROR_ITEM_NOT_FOUND}, 404
+        return {"error": ERROR_SONG_NOT_FOUND}, 404
 
     @classmethod
     @fresh_jwt_required
@@ -47,8 +47,8 @@ class Song(Resource):
         song = SongModel.find_by_name(name)
         if song:
             song.delete_from_db()
-            return {"message": MESSAGE_ITEM_DELETED}, 200
-        return {"error": ERROR_ITEM_NOT_FOUND.format(name)}
+            return {"message": MESSAGE_SONG_DELETED}, 200
+        return {"error": ERROR_SONG_NOT_FOUND.format(name)}
 
     @classmethod
     @fresh_jwt_required

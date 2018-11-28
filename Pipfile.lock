@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "435e9d5e9d91d9e5dcf11c0c8a97c176fffee76f4af0f2c6e6a34790c5d4a711"
+            "sha256": "f656fb388e4055cc51301d91fe05af2aea57edf9b4334d7fad91eae224c3b8dd"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.7"
+            "python_version": "3.6"
         },
         "sources": [
             {
@@ -177,9 +177,9 @@
         },
         "sqlalchemy": {
             "hashes": [
-                "sha256:84412de3794acee05630e7788f25e80e81f78eb4837e7b71d0499129f660486a"
+                "sha256:26c1f1e7ff0abc3ed15c687348e4be9dffbc9c2ace2b7df714c6a579171a56b5"
             ],
-            "version": "==1.2.13"
+            "version": "==1.3.0b1"
         },
         "toml": {
             "hashes": [

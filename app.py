@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_restful import Resource, Api
 from flask_jwt_extended import JWTManager
 
@@ -98,6 +98,12 @@ api.add_resource(User, "/user/<int:user_id>")
 api.add_resource(UserLogin, "/login")
 api.add_resource(TokenRefresh, "/refresh")
 api.add_resource(UserLogout, "/logout")
+
+
+@app.route("/")
+def documentation():
+    return render_template("doc.html")
+
 
 if __name__ == "__main__":
     db.init_app(app)
