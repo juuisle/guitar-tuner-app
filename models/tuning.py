@@ -8,14 +8,9 @@ class TuningModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    str_one = db.Column(db.Float(precision=2), nullable=False)
-    str_two = db.Column(db.Float(precision=2), nullable=False)
-    str_three = db.Column(db.Float(precision=2), nullable=False)
-    str_four = db.Column(db.Float(precision=2), nullable=False)
-    str_five = db.Column(db.Float(precision=2), nullable=False)
-    str_six = db.Column(db.Float(precision=2), nullable=False)
 
     songs = db.relationship("SongModel", lazy="dynamic")
+    strings = db.relationship("StringModel", lazy="dynamic")
 
     @classmethod
     def find_by_name(cls, name: str) -> "TuningModel":

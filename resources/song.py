@@ -58,6 +58,7 @@ class Song(Resource):
 
         if song:
             song.length = song_json["length"]
+            song.lyrics = song_json["lyrics"]
         else:
             song_json["name"] = name
 

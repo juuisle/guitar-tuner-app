@@ -1,11 +1,13 @@
+from flask import request
+from flask_jwt_extended import jwt_required, fresh_jwt_required
 from flask_restful import Resource
 from models.tuning import TuningModel
 from schemas.tuning import TuningSchema
 
-ERROR_STORE_ALREADY_EXISTS = "An song with name '{}' already exist"
+ERROR_TUNNING_ALREADY_EXISTS = "An song with name '{}' already exist"
 ERROR_INSERTING = "An error occurred inserting the song"
-ERROR_STORE_NOT_FOUND = "Tuning not found"
-MESSAGE_STORE_DELETED = "Tuning deleted"
+ERROR_TUNNING_NOT_FOUND = "Tuning not found"
+MESSAGE_TUNNING_DELETED = "Tuning deleted"
 
 tuning_schema = TuningSchema()
 tuning_list_schema = TuningSchema(many=True)
@@ -17,12 +19,12 @@ class Tuning(Resource):
         tuning = TuningModel.find_by_name(name)
         if tuning:
             return tuning_schema.dump(tuning), 200
-        return {"error": ERROR_STORE_NOT_FOUND}, 404
+        return {"error": ERROR_TUNNING_NOT_FOUND}, 404
 
     @classmethod
     def post(cls, name: str):
         if TuningModel.find_by_name(name):
-            return ({"error": ERROR_STORE_ALREADY_EXISTS.format(name)}, 400)
+            return ({"error": ERROR_TUNNING_ALREADY_EXISTS.format(name)}, 400)
 
         tuning = TuningModel(name=name)
         try:
@@ -37,8 +39,8 @@ class Tuning(Resource):
         tuning = TuningModel.find_by_name(name)
         if tuning:
             tuning.delete_from_db()
-            return {"message": MESSAGE_STORE_DELETED}, 200
-        return {"error": ERROR_STORE_NOT_FOUND}, 401
+            return {"message": MESSAGE_TUNNING_DELETED}, 200
+        return {"error": ERROR_TUNNING_NOT_FOUND}, 401
 
 
 class TuningList(Resource):

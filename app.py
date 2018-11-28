@@ -3,6 +3,7 @@ import os
 from flask import Flask, jsonify, render_template
 from flask_restful import Resource, Api
 from flask_jwt_extended import JWTManager
+from dotenv import load_dotenv
 
 from db import db
 from ma import ma
@@ -14,22 +15,19 @@ from resources.tuning import Tuning, TuningList
 
 app = Flask(__name__)
 
-user_dataBASE = os.environ.get("user_dataBASE_URL", "sqlite:///user_data.db")
+load_dotenv(".env", verbose=True)
+# load default config from default_config.py
+app.config.from_object("default_config")
+app.config.from_envvar(
+    "APPLICATION_SETTINGS"
+)  # override with config.py (APPLICATION_SETTINGS points to config.py)
 
-app.config["SQLALCHEMY_user_dataBASE_URI"] = user_dataBASE
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["PROPAGATE_EXCEPTION"] = True
-app.config["JWT_BLACKLIST_ENABLED"] = True
-app.config["JWT_BLACKLIST_TOKEN_CHECKS"] = ["access", "refresh"]
-
-app.config["JWT_SECRET_KEY"] = "very-handsome"
 api = Api(app)
 
-if user_dataBASE == "sqlite:///user_data.db":
 
-    @app.before_first_request
-    def create_tables():
-        db.create_all()
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 
 @app.errorhandler(ValidationError)
