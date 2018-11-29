@@ -47,3 +47,13 @@ class TuningList(Resource):
     @classmethod
     def get(self):
         return {"tunings": tuning_list_schema.dump(TuningModel.find_all())}
+
+
+class TunningSelected(Resource):
+    @classmethod
+    def get(self):
+        return {"tuning": "default tuning"}
+
+    @classmethod
+    def post(self):
+        return {"post succeeded!"}
