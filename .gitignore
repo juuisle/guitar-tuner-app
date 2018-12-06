@@ -1,3 +1,5 @@
 .DS_Tuning
 __pycache__/
 *.pyc
+
+.env
