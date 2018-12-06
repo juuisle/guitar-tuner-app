@@ -15,6 +15,7 @@ marshmallow = "==3.0.0b16"
 flask-marshmallow = "*"
 marshmallow-sqlalchemy = "*"
 python-dotenv = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.6"

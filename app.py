@@ -1,5 +1,6 @@
 import os
 
+from flask_cors import CORS
 from flask import Flask, jsonify, render_template
 from flask_restful import Resource, Api
 from flask_jwt_extended import JWTManager
@@ -11,7 +12,7 @@ from blacklist import BLACKLIST
 from marshmallow import ValidationError
 from resources.user import UserRegister, User, UserLogin, UserLogout, TokenRefresh
 from resources.song import SongsList, Song
-from resources.tuning import Tuning, TuningList
+from resources.tuning import Tuning, TuningList, TuningSelected
 
 app = Flask(__name__)
 
@@ -23,6 +24,7 @@ app.config.from_envvar(
 )  # override with config.py (APPLICATION_SETTINGS points to config.py)
 
 api = Api(app)
+CORS(app)
 
 
 @app.before_first_request
@@ -89,7 +91,8 @@ def revoked_token_callback():
 api.add_resource(TuningList, "/tunings")
 api.add_resource(SongsList, "/songs")
 api.add_resource(Song, "/song/<string:name>")
-api.add_resource(Tuning, "/tuning/<string:name>")
+api.add_resource(Tuning, "/tuning", "/tuning/<int:tuning_id>")
+api.add_resource(TuningSelected, "/selected", "/selected/<int:tuning_id>")
 
 api.add_resource(UserRegister, "/register")
 api.add_resource(User, "/user/<int:user_id>")

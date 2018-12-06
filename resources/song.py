@@ -24,15 +24,17 @@ class Song(Resource):
         return {"error": ERROR_SONG_NOT_FOUND}, 404
 
     @classmethod
-    @fresh_jwt_required
+    #    @fresh_jwt_required
     def post(cls, name: str):
         if SongModel.find_by_name(name):
             return {"error": ERROR_NAME_ALREADY_EXISTS.format(name)}, 400
 
-        song_json = request.get_json()
-        song_json["name"] = name
-
-        song = song_schema.load(song_json)
+        try:
+            song_json = request.get_json()
+            song_json["name"] = name
+            song = song_schema.load(song_json)
+        except ValidationError as arr:
+            return err.messages, 400
 
         try:
             song.save_to_db()
@@ -42,7 +44,7 @@ class Song(Resource):
         return song_schema.dump(song), 201
 
     @classmethod
-    @jwt_required
+    #    @jwt_required
     def delete(cls, name: str):
         song = SongModel.find_by_name(name)
         if song:
@@ -51,7 +53,7 @@ class Song(Resource):
         return {"error": ERROR_SONG_NOT_FOUND.format(name)}
 
     @classmethod
-    @fresh_jwt_required
+    #    @fresh_jwt_required
     def put(cls, name: str):
         song_json = request.get_json()
         song = SongModel.find_by_name(name)

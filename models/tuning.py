@@ -16,11 +16,32 @@ class TuningModel(db.Model):
     str_five = db.Column(db.Float(precision=2), nullable=False)
     str_six = db.Column(db.Float(precision=2), nullable=False)
 
+    selected = db.Column(db.Boolean, nullable=False, default=False)
     songs = db.relationship("SongModel", lazy="dynamic")
 
     @classmethod
     def find_by_name(cls, name: str) -> "TuningModel":
         return cls.query.filter_by(name=name).first()
+
+    @classmethod
+    def find_by_id(cls, _id: int) -> "UserModel":
+        return cls.query.filter_by(id=_id).first()
+
+    @classmethod
+    def select_by_id(cls, tuning_id: int) -> "TuningModel":
+        current = cls.get_seleted()
+        if current:
+            current.selected = False
+            current.save_to_db()
+
+        new_tuning = cls.find_by_id(tuning_id)
+        new_tuning.selected = True
+
+        new_tuning.save_to_db()
+
+    @classmethod
+    def get_seleted(cls) -> "TuningModel":
+        return cls.query.filter_by(selected=True).first()
 
     @classmethod
     def find_all(cls) -> List["TuningModel"]:
