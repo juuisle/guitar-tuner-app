@@ -1,8 +1,7 @@
 aniso8601==4.0.1
 appdirs==1.4.3
 attrs==18.2.0
-black==18.9b0
-Click==7.0
+lick==7.0
 Flask==1.0.2
 Flask-Cors==3.0.7
 Flask-JWT-Extended==3.13.1
