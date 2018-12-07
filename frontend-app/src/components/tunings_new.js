@@ -81,23 +81,50 @@ function validate(values) {
   if (!values.name) {
     errors.name = "Enter a title";
   }
+  if(values.name.length > 18) {
+	errors.name = "Name has to be maximum of 18 characters."
+  }
+  
   if (!values.str_one) {
     errors.str_one = "Enter frequency";
   }
+  if (values.str_one <==112.00 && values.str_one ==>70.00) {
+    errors.str_one = "Frequency out of range";
+  }
+  
   if (!values.str_two) {
     errors.str_two = "Enter frequency";
   }
+  if (values.str_two <==140.00 && values.str_two ==>90.00) {
+    errors.str_two = "Frequency out of range";
+  }
+  
   if (!values.str_three) {
     errors.str_three = "Enter frequency";
   }
+  if (values.str_three <==176.00 && values.str_three ==>116.00) {
+    errors.str_three = "Frequency out of range";
+  }
+  
   if (!values.str_four) {
     errors.str_four = "Enter frequency";
   }
+  if (values.str_four <==226.00 && values.str_four ==>166.00) {
+    errors.str_four = "Frequency out of range";
+  }
+  
   if (!values.str_five) {
     errors.str_five = "Enter frequency";
   }
+  if (values.str_five <==276.00 && values.str_five ==>216.00) {
+    errors.str_five = "Frequency out of range";
+  }
+  
   if (!values.str_six) {
     errors.str_six = "Enter frequency";
+  }
+  if (values.str_five <==360.00 && values.str_five ==>300.00) {
+    errors.str_five = "Frequency out of range";
   }
 
   return errors;
