@@ -1,4 +1,4 @@
-# guitar-tuner-app
+# guitar-tuner-app.
 A web application for an automatic Guitar Tuner Device. 
 
 # Installation Instruction 
