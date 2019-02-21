@@ -2,8 +2,6 @@ language: nodejs
 nodejs:
   - 8.10
 # command to install dependencies
-install:
-  npm install
 # command to run tests
 script:
   - npm test
