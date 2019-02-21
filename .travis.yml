@@ -4,4 +4,4 @@ nodejs:
 # command to install dependencies
 # command to run tests
 script:
-  - npm test
+  - "node test.js"
