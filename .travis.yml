@@ -3,7 +3,7 @@ nodejs:
   - 8.10
 # command to install dependencies
 install:
-  - npm install phantomjs
+  - npm install
 # command to run tests
 script:
-  - "./node_module/phantomjs/bin/phantomjs node test.js"
+  - phantomjs test.js"

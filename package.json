@@ -1,0 +1,24 @@
+{
+  "name": "guitar-tuner",
+  "version": "1.0.0",
+  "description": "A web application for an automatic Guitar Tuner Device.",
+  "main": "test.js",
+  "dependencies": {},
+  "devDependencies": {
+    "phantomjs": "^2.1.7",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juuisle/guitar-tuner-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juuisle/guitar-tuner-app/issues"
+  },
+  "homepage": "https://github.com/juuisle/guitar-tuner-app#readme"
+}
